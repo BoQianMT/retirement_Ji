@@ -1,81 +1,279 @@
 <!doctype html>
-<html lang="zh-CN">
+<html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>XX教授 退休纪念活动</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>計宇生教授 退職記念講義・懇親会 開催案内</title>
+  <meta name="description" content="計宇生教授 退職記念講義・懇親会（オンライン配信予定）開催案内" />
   <style>
-    body{font-family:system-ui,-apple-system,Segoe UI,Arial,"Noto Sans SC",sans-serif;line-height:1.7;margin:0}
-    header{border-bottom:1px solid #eee}
-    .wrap{max-width:900px;margin:0 auto;padding:18px 16px}
-    nav a{margin-right:14px;color:#111;text-decoration:none}
+    body{font-family:system-ui,-apple-system,"Segoe UI",Arial,"Noto Sans JP","Noto Sans SC",sans-serif;line-height:1.75;margin:0;color:#111}
+    header{border-bottom:1px solid #eee;background:#fff;position:sticky;top:0}
+    .wrap{max-width:980px;margin:0 auto;padding:18px 16px}
+    nav a{margin-right:14px;color:#111;text-decoration:none;font-size:14px}
     nav a:hover{text-decoration:underline}
-    h1{margin:10px 0 6px;font-size:28px}
-    .meta{color:#666;font-size:14px}
-    .card{border:1px solid #eee;border-radius:12px;padding:14px;margin:14px 0}
-    .btn{display:inline-block;padding:10px 14px;border-radius:10px;border:1px solid #111;color:#111;text-decoration:none}
+    h1{font-size:28px;margin:10px 0 6px}
+    h2{font-size:18px;margin:0 0 8px}
+    .meta{color:#666;font-size:13px}
+    .card{border:1px solid #eee;border-radius:14px;padding:14px 14px;margin:14px 0;background:#fff}
+    .btn{display:inline-block;padding:10px 14px;border-radius:12px;border:1px solid #111;color:#111;text-decoration:none}
     .btn:hover{opacity:.85}
-    footer{border-top:1px solid #eee;color:#666;font-size:13px;margin-top:22px}
+    .grid{display:grid;grid-template-columns:1fr;gap:12px}
+    @media(min-width:860px){.grid{grid-template-columns:1fr 1fr}}
+    .warn{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412}
+    footer{border-top:1px solid #eee;color:#666;font-size:13px;margin-top:24px}
+    ul{padding-left:18px;margin:8px 0}
+    .lang{float:right}
+    .lang button{border:1px solid #ddd;background:#fff;border-radius:10px;padding:6px 10px;margin-left:8px;cursor:pointer}
+    .lang button:hover{background:#fafafa}
+    .hide{display:none}
+    .small{font-size:13px;color:#666}
+    code{background:#f6f6f6;padding:2px 6px;border-radius:6px}
   </style>
 </head>
+
 <body>
-  <header>
-    <div class="wrap">
-      <nav>
-        <a href="#about">简介</a>
-        <a href="#schedule">日程</a>
-        <a href="#venue">地点</a>
-        <a href="#register">报名</a>
-        <a href="#message">留言</a>
-      </nav>
+<header>
+  <div class="wrap">
+    <div class="lang">
+      <button onclick="setLang('ja')">日本語</button>
+      <button onclick="setLang('en')">English</button>
+      <button onclick="setLang('zh')">中文</button>
     </div>
-  </header>
+    <nav>
+      <a href="#top">Top</a>
+      <a href="#overview">概要</a>
+      <a href="#time-venue">日時・会場</a>
+      <a href="#fee">参加費</a>
+      <a href="#links">リンク</a>
+      <a href="#contact">連絡先</a>
+    </nav>
+  </div>
+</header>
 
-  <main class="wrap">
-    <div class="meta">发布：2026-02-24</div>
-    <h1>XX教授 退休纪念讲义与交流会</h1>
-    <div class="meta">主办：XX研究室 / XX学院</div>
+<main class="wrap" id="top">
 
-    <section id="about" class="card">
-      <h2>活动简介</h2>
-      <p>为感谢 XX 教授多年来的指导与贡献，拟举办退休纪念讲义与交流会，欢迎各位同仁与校友参加。</p>
-    </section>
+  <!-- 日本語 -->
+  <section id="ja" class="langblock">
+    <div class="meta">計宇生教授 退職記念講義 実行委員会</div>
+    <h1>計宇生教授 退職記念講義・懇親会 開催案内</h1>
 
-    <section id="schedule" class="card">
-      <h2>日程</h2>
+    <div class="card warn">
+      <b>メモ：</b>原文には「2026年3月7日をもってご退職」および「【日時と会場】2025年3月7日(土)」の記載があり、年が不一致です。
+      本ページでは一旦 <b>2026-03-07(土)</b> として掲載しています。必要に応じて修正してください。
+    </div>
+
+    <div class="card" id="overview">
+      <h2>ご案内</h2>
+      <p>
+        拝啓　時下ますますご清栄のこととお慶び申し上げます。<br/>
+        先日お知らせいたしましたとおり、計宇生先生が2026年3月7日をもってご退職されます。
+        ご退職にあたって、下記のとおり退職記念講義ならびに懇親会を開催いたします。
+        本講義はオンライン配信も予定しておりますので、皆様ぜひご参加いただけますようお願い申し上げます。
+      </p>
+    </div>
+
+    <div class="grid" id="time-venue">
+      <div class="card">
+        <h2>【日時】</h2>
+        <ul>
+          <li>2026年3月7日 (土) <span class="small">※要確認</span></li>
+          <li>退職記念講義（6Gおよび次世代ネットワーク技術シンポジウム）：12:00 – 17:00</li>
+          <li>懇親会（Celebratory Reception）：<b>TBD</b></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>【会場】</h2>
+        <ul>
+          <li>退職記念講義：国立情報学研究所 (NII) 1512会議室</li>
+          <li>懇親会：〒163-0454 東京都新宿区西新宿2-1-1 新宿三井ビルディング54階</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card" id="links">
+      <h2>オンライン／関連リンク</h2>
       <ul>
-        <li>日期：2026-03-10（周二）</li>
-        <li>15:00–16:00 退休纪念讲义（14:30 开始签到）</li>
-        <li>17:00–18:30 交流会/懇亲会（16:30 开始签到）</li>
+        <li>Online link：<b>TBD</b>（例：Zoom / Teams / YouTube Live 等）</li>
+        <li>懇親会会場サイト：<a href="https://www.shinjukumitsuiclub.jp/#close" target="_blank" rel="noopener">Shinjuku Mitsui Club</a></li>
       </ul>
-    </section>
+      <p class="small">※ Online link が決まったら、上の <code>TBD</code> をURLに置き換えてください。</p>
+    </div>
 
-    <section id="venue" class="card">
-      <h2>地点</h2>
+    <div class="card">
+      <h2>【参加方法】</h2>
+      <p>現地参加、オンライン参加</p>
+      <p>
+        （任意）参加登録フォーム：<a class="btn" href="TBD" target="_blank" rel="noopener">参加登録（TBD）</a>
+      </p>
+    </div>
+
+    <div class="card" id="fee">
+      <h2>【参加費】</h2>
       <ul>
-        <li>讲义地点：XX校区 XX楼 XX会议室</li>
-        <li>交流会地点：XX酒店/餐厅</li>
+        <li>記念講義：なし</li>
+        <li>懇親会：料理 6,600円 ／ 飲料 2,400円</li>
       </ul>
-      <p>地图：<a href="https://maps.google.com" target="_blank" rel="noopener">点击查看</a></p>
-    </section>
+    </div>
 
-    <section id="register" class="card">
-      <h2>报名</h2>
-      <p>请通过下方链接报名：</p>
-      <p><a class="btn" href="https://example.com" target="_blank" rel="noopener">进入报名页面</a></p>
-      <p class="meta">报名截止：2026-03-05</p>
-    </section>
+    <div class="card" id="contact">
+      <h2>連絡先</h2>
+      <p>担当：<b>TBD</b>（Email：<b>TBD</b>）</p>
+      <p class="small">「【その他連絡事項】」は追記があればここに追加できます。</p>
+    </div>
+  </section>
 
-    <section id="message" class="card">
-      <h2>留言</h2>
-      <p>无法到场也欢迎留言祝福：</p>
-      <p><a class="btn" href="https://example.com" target="_blank" rel="noopener">填写留言表单</a></p>
-    </section>
+  <!-- English -->
+  <section id="en" class="langblock hide">
+    <div class="meta">Organizing Committee</div>
+    <h1>Celebrate Prof. Yusheng Ji’s Retirement</h1>
 
-    <footer class="wrap">
-      <div>联系人：XXX（Email：xxx@example.com）</div>
-      <div>© 2026 XX研究室</div>
-    </footer>
-  </main>
+    <div class="card warn">
+      <b>Note:</b> The original document mentions both “retiring on March 7, 2026” and an event date written as “March 7, 2025”.
+      This page currently uses <b>Mar 7, 2026 (Sat)</b> as a placeholder. Please revise if needed.
+    </div>
+
+    <div class="card">
+      <h2>Overview</h2>
+      <p>
+        As previously announced, Prof. Yusheng Ji will retire on March 7, 2026.
+        To celebrate his retirement, we will hold a commemorative lecture and a reception.
+        The lecture is also planned to be streamed online. We warmly welcome your participation.
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>Date & Time</h2>
+        <ul>
+          <li><b>Mar 7, 2026 (Sat)</b> <span class="small">(to be confirmed)</span></li>
+          <li>Commemorative Lecture (6G & Next-Generation Network Symposium): 12:00 – 17:00</li>
+          <li>Reception: <b>TBD</b></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>Venue</h2>
+        <ul>
+          <li>Lecture: National Institute of Informatics (NII), Room 1512</li>
+          <li>Reception: Shinjuku Mitsui Building, 54F, 2-1-1 Nishi-Shinjuku, Shinjuku-ku, Tokyo 163-0454</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Online / Links</h2>
+      <ul>
+        <li>Online link: <b>TBD</b></li>
+        <li>Reception venue website: <a href="https://www.shinjukumitsuiclub.jp/#close" target="_blank" rel="noopener">Shinjuku Mitsui Club</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Participation</h2>
+      <p>On-site or online participation.</p>
+      <p>
+        (Optional) Registration form: <a class="btn" href="TBD" target="_blank" rel="noopener">Register (TBD)</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>Fees</h2>
+      <ul>
+        <li>Lecture: Free</li>
+        <li>Reception: Food 6,600 JPY / Drinks 2,400 JPY</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>Contact</h2>
+      <p>Contact person: <b>TBD</b>（Email: <b>TBD</b>）</p>
+    </div>
+  </section>
+
+  <!-- 中文 -->
+  <section id="zh" class="langblock hide">
+    <div class="meta">计宇生教授 退职记念讲义 执行委员会</div>
+    <h1>计宇生教授 退职记念讲义・懇亲会 举办通知</h1>
+
+    <div class="card warn">
+      <b>提示：</b>原文同时写了“2026年3月7日退休”和“活动日期 2025年3月7日”，年份不一致。
+      本页暂按 <b>2026-03-07（周六）</b> 展示，后续你可按最终通知修改。
+    </div>
+
+    <div class="card">
+      <h2>通知</h2>
+      <p>
+        按照此前通知，计宇生教授将于 2026 年 3 月 7 日退休。为此将举办退职记念讲义及懇亲会。
+        讲义也计划提供线上直播，欢迎大家参加。
+      </p>
+    </div>
+
+    <div class="grid">
+      <div class="card">
+        <h2>时间</h2>
+        <ul>
+          <li><b>2026-03-07（周六）</b> <span class="small">（待确认）</span></li>
+          <li>退职记念讲义（6G及下一代网络技术研讨会）：12:00 – 17:00</li>
+          <li>懇亲会：<b>TBD</b></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>地点</h2>
+        <ul>
+          <li>讲义：国立信息学研究所（NII）1512会议室</li>
+          <li>懇亲会：东京都新宿区西新宿2-1-1 新宿三井大厦54层（〒163-0454）</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>线上/相关链接</h2>
+      <ul>
+        <li>Online link：<b>TBD</b></li>
+        <li>懇亲会会场官网：<a href="https://www.shinjukumitsuiclub.jp/#close" target="_blank" rel="noopener">Shinjuku Mitsui Club</a></li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>参加方式</h2>
+      <p>现场参加、线上参加</p>
+      <p>
+        （可选）报名表：<a class="btn" href="TBD" target="_blank" rel="noopener">报名入口（TBD）</a>
+      </p>
+    </div>
+
+    <div class="card">
+      <h2>费用</h2>
+      <ul>
+        <li>记念讲义：免费</li>
+        <li>懇亲会：料理 6,600 日元 ／ 饮料 2,400 日元</li>
+      </ul>
+    </div>
+
+    <div class="card">
+      <h2>联系人</h2>
+      <p>负责人：<b>TBD</b>（邮箱：<b>TBD</b>）</p>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div>Last updated: <span id="lastUpdated"></span></div>
+  </footer>
+</main>
+
+<script>
+  function setLang(lang){
+    document.querySelectorAll('.langblock').forEach(el => el.classList.add('hide'));
+    document.getElementById(lang).classList.remove('hide');
+    localStorage.setItem('lang', lang);
+  }
+  (function(){
+    const saved = localStorage.getItem('lang') || 'ja';
+    setLang(saved);
+    document.getElementById('lastUpdated').textContent = new Date().toISOString().slice(0,10);
+  })();
+</script>
 </body>
 </html>
