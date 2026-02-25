@@ -14,11 +14,6 @@
       --warn-bg: #fff7ed;
       --warn-border: #fed7aa;
       --warn-text: #9a3412;
-
-      /* 追加：祝い系の色（控えめ） */
-      --accent: #b48a00;   /* 金 */
-      --petal: rgba(255, 192, 203, 0.18); /* 桜っぽい */
-      --leaf: rgba(34, 197, 94, 0.10);    /* 葉 */
     }
     *{box-sizing:border-box}
     body{
@@ -26,30 +21,19 @@
       font-family: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans JP", sans-serif;
       line-height:1.75;
       color:#111;
-
-      /* 追加：花びら・金色の淡い背景（読みにくくしない程度） */
-      background:
-        radial-gradient(900px 600px at 10% 8%, var(--petal), transparent 55%),
-        radial-gradient(900px 650px at 92% 18%, rgba(255,215,0,0.14), transparent 55%),
-        radial-gradient(800px 650px at 85% 92%, var(--leaf), transparent 55%),
-        #fafafa;
+      background: #fafafa;
     }
-
     header{
       position: sticky;
       top: 0;
       background: var(--bg);
       border-bottom: 1px solid var(--border);
       z-index: 10;
-      /* 追加：薄いガラス感 */
-      backdrop-filter: blur(6px);
     }
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
       padding: 18px 16px;
-      position: relative; /* 追加：装飾が重なっても崩れないように */
-      z-index: 1;
     }
     nav a{
       margin-right: 14px;
@@ -61,7 +45,6 @@
     h1{ margin: 10px 0 6px; font-size: 28px; }
     h2{ margin: 0 0 8px; font-size: 18px; }
     .meta{ color: var(--muted); font-size: 13px; }
-
     .card{
       background: var(--bg);
       border: 1px solid var(--border);
@@ -69,9 +52,6 @@
       padding: 14px;
       margin: 14px 0;
       box-shadow: 0 1px 0 rgba(0,0,0,.02);
-
-      /* 追加：カードにほんの少し立体感 */
-      box-shadow: 0 10px 24px rgba(0,0,0,0.05);
     }
     .warn{
       background: var(--warn-bg);
@@ -87,7 +67,6 @@
       .grid{ grid-template-columns: 1fr 1fr; }
     }
     ul{ padding-left: 18px; margin: 8px 0; }
-
     .btn{
       display:inline-block;
       padding: 10px 14px;
@@ -98,7 +77,6 @@
       background:#fff;
     }
     .btn:hover{ opacity: .86; }
-
     footer{
       border-top: 1px solid var(--border);
       color: var(--muted);
@@ -113,55 +91,42 @@
     }
     .small{ font-size: 13px; color: var(--muted); }
 
-    /* ====== 追加：花草の控えめ装飾（固定配置・クリック邪魔しない） ====== */
-    .decor{
+    /* =========================
+       追加：両側に花びらがゆっくり舞う演出（方案一）
+       ========================= */
+    .petal{
       position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
+      top: -60px;
+      font-size: 22px;
+      opacity: 0.18;
+      pointer-events: none;  /* クリック邪魔しない */
+      z-index: 0;            /* 本文より背面 */
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+      will-change: transform;
     }
-    .decor .corner{
-      position:absolute;
-      width: 320px;
-      height: 320px;
-      opacity: 0.10;
-      filter: blur(0.2px);
+    @keyframes fall{
+      0%   { transform: translateY(-60px) translateX(0) rotate(0deg); }
+      100% { transform: translateY(110vh) translateX(40px) rotate(360deg); }
     }
-    .decor .corner.leftTop{ left:-120px; top:-110px; transform: rotate(-12deg); }
-    .decor .corner.rightBottom{ right:-130px; bottom:-120px; transform: rotate(10deg); }
-
-    /* 花っぽいSVGをCSS背景で描画（外部画像不要） */
-    .decor .corner.flower{
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'%3E%3Cdefs%3E%3CradialGradient id='g' cx='50%25' cy='50%25' r='55%25'%3E%3Cstop offset='0%25' stop-color='%23ffd1dc'/%3E%3Cstop offset='100%25' stop-color='%23ffffff' stop-opacity='0'/%3E%3C/radialGradient%3E%3C/defs%3E%3Ccircle cx='170' cy='150' r='140' fill='url(%23g)'/%3E%3Ccircle cx='310' cy='140' r='150' fill='url(%23g)'/%3E%3Ccircle cx='220' cy='300' r='170' fill='url(%23g)'/%3E%3Ccircle cx='360' cy='320' r='150' fill='url(%23g)'/%3E%3Ccircle cx='120' cy='340' r='150' fill='url(%23g)'/%3E%3Ccircle cx='260' cy='240' r='70' fill='%23ffb6c1' fill-opacity='0.35'/%3E%3C/svg%3E");
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    .decor .corner.leaves{
-      background:
-        url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='520' height='520' viewBox='0 0 520 520'%3E%3Cpath d='M120 420c90-10 150-70 160-160-90 10-150 70-160 160Z' fill='%2304a777' fill-opacity='0.25'/%3E%3Cpath d='M240 470c120-25 200-105 210-220-120 25-200 105-210 220Z' fill='%2316a34a' fill-opacity='0.20'/%3E%3Cpath d='M60 360c80-20 130-70 140-140-80 20-130 70-140 140Z' fill='%2322c55e' fill-opacity='0.18'/%3E%3C/svg%3E");
-      background-size: cover;
-      background-repeat: no-repeat;
-    }
-
-    /* 追加：上部に薄いお祝いライン（派手すぎない） */
-    header::after{
-      content:"";
-      display:block;
-      height: 3px;
-      background: linear-gradient(90deg, transparent, var(--accent), transparent);
-      opacity: .55;
-    }
+    /* 本文は花びらより前面に */
+    header, main, footer { position: relative; z-index: 2; }
   </style>
 </head>
 
 <body>
-  <!-- 追加：背景装飾レイヤー（内容は一切変更しない） -->
-  <div class="decor" aria-hidden="true">
-    <div class="corner flower leftTop"></div>
-    <div class="corner leaves rightBottom"></div>
-  </div>
+  <!-- =========================
+       追加：花びら（左右のみ）
+       ※数を増減して密度調整できます
+       ========================= -->
+  <div class="petal" style="left:4%;  animation-duration:18s; animation-delay:-2s;">🌸</div>
+  <div class="petal" style="left:10%; animation-duration:22s; animation-delay:-10s; font-size:20px;">🌸</div>
+  <div class="petal" style="left:16%; animation-duration:20s; animation-delay:-6s; font-size:24px;">🌸</div>
+
+  <div class="petal" style="left:84%; animation-duration:19s; animation-delay:-4s;">🌸</div>
+  <div class="petal" style="left:90%; animation-duration:24s; animation-delay:-12s; font-size:20px;">🌸</div>
+  <div class="petal" style="left:96%; animation-duration:21s; animation-delay:-8s; font-size:24px;">🌸</div>
 
 <header>
   <div class="wrap">
