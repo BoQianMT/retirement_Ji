@@ -9,55 +9,106 @@
     :root{
       --max: 980px;
       --border: #eaeaea;
-      --muted: #666;
-      --bg: #fff;
+
+      /* 色を追加（控えめ・上品） */
+      --ink: #1f2937;         /* 本文：濃いグレー */
+      --muted: #6b7280;       /* 補助文字 */
+      --bg: rgba(255,255,255,0.82); /* カード背景を少し透過 */
+
+      --accent: #b48a00;      /* 金 */
+      --accent2: #b42318;     /* 朱（タイトル） */
+      --accent3: #0f766e;     /* 青緑（リンク/強調） */
+
       --warn-bg: #fff7ed;
       --warn-border: #fed7aa;
       --warn-text: #9a3412;
     }
+
     *{box-sizing:border-box}
+
+    /* ===== 背景を華やかに（淡い多色グラデ） ===== */
     body{
       margin:0;
       font-family: system-ui, -apple-system, "Segoe UI", Arial, "Noto Sans JP", sans-serif;
       line-height:1.75;
-      color:#111;
-      background: #fafafa;
+      color: var(--ink);
+
+      background:
+        radial-gradient(900px 650px at 10% 10%, rgba(255,192,203,0.22), transparent 55%),
+        radial-gradient(900px 700px at 92% 18%, rgba(255,215,0,0.18), transparent 58%),
+        radial-gradient(900px 700px at 85% 92%, rgba(34,197,94,0.14), transparent 58%),
+        radial-gradient(900px 700px at 20% 88%, rgba(59,130,246,0.12), transparent 55%),
+        linear-gradient(180deg, rgba(255,255,255,0.9), rgba(250,250,250,1));
     }
+
     header{
       position: sticky;
       top: 0;
-      background: var(--bg);
+      background: rgba(255,255,255,0.88);
       border-bottom: 1px solid var(--border);
       z-index: 10;
+      backdrop-filter: blur(8px);
     }
+    header::after{
+      content:"";
+      display:block;
+      height: 3px;
+      background: linear-gradient(90deg, transparent, rgba(180,138,0,.7), rgba(180,36,24,.55), rgba(15,118,110,.55), transparent);
+    }
+
     .wrap{
       max-width: var(--max);
       margin: 0 auto;
       padding: 18px 16px;
+      position: relative;
+      z-index: 2; /* 花びらより前面 */
     }
+
     nav a{
       margin-right: 14px;
       text-decoration: none;
-      color:#111;
+      color: var(--ink);
       font-size:14px;
+      opacity:.9;
     }
     nav a:hover{ text-decoration: underline; }
-    h1{ margin: 10px 0 6px; font-size: 28px; }
-    h2{ margin: 0 0 8px; font-size: 18px; }
-    .meta{ color: var(--muted); font-size: 13px; }
+
+    /* タイトルやメタ情報に色味を */
+    h1{
+      margin: 10px 0 6px;
+      font-size: 30px;
+      color: var(--accent2);
+      letter-spacing: .2px;
+    }
+    h2{
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #7c2d12; /* 落ち着いた茶赤 */
+    }
+    h2::before{
+      content:"";
+      display:inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin-right: 8px;
+      transform: translateY(-1px);
+    }
+    .meta{
+      color: var(--muted);
+      font-size: 13px;
+    }
+
     .card{
       background: var(--bg);
-      border: 1px solid var(--border);
-      border-radius: 14px;
+      border: 1px solid rgba(234,234,234,0.9);
+      border-radius: 16px;
       padding: 14px;
       margin: 14px 0;
-      box-shadow: 0 1px 0 rgba(0,0,0,.02);
+      box-shadow: 0 14px 30px rgba(0,0,0,.06);
     }
-    .warn{
-      background: var(--warn-bg);
-      border-color: var(--warn-border);
-      color: var(--warn-text);
-    }
+
     .grid{
       display: grid;
       grid-template-columns: 1fr;
@@ -66,24 +117,29 @@
     @media (min-width: 860px){
       .grid{ grid-template-columns: 1fr 1fr; }
     }
+
     ul{ padding-left: 18px; margin: 8px 0; }
+
     .btn{
       display:inline-block;
       padding: 10px 14px;
-      border-radius: 12px;
-      border: 1px solid #111;
-      color:#111;
+      border-radius: 999px;
+      border: 1px solid rgba(15,118,110,.35);
+      color: #065f46;
       text-decoration:none;
-      background:#fff;
+      background: linear-gradient(180deg, rgba(236,253,245,.95), rgba(240,253,250,.9));
     }
-    .btn:hover{ opacity: .86; }
+    .btn:hover{ opacity: .9; }
+
     footer{
       border-top: 1px solid var(--border);
       color: var(--muted);
       font-size: 13px;
       margin-top: 22px;
-      background: var(--bg);
+      background: rgba(255,255,255,0.78);
+      backdrop-filter: blur(6px);
     }
+
     code{
       background:#f3f4f6;
       padding: 2px 6px;
@@ -92,41 +148,54 @@
     .small{ font-size: 13px; color: var(--muted); }
 
     /* =========================
-       追加：両側に花びらがゆっくり舞う演出（方案一）
+       花びら：数増やす＋揺れ追加
        ========================= */
     .petal{
       position: fixed;
-      top: -60px;
-      font-size: 22px;
-      opacity: 0.18;
-      pointer-events: none;  /* クリック邪魔しない */
-      z-index: 0;            /* 本文より背面 */
-      animation-name: fall;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
+      top: -70px;
+      pointer-events: none;
+      z-index: 1;
       will-change: transform;
+      opacity: 0.22;
+      filter: saturate(1.15);
+      animation-name: fall, sway;
+      animation-timing-function: linear, ease-in-out;
+      animation-iteration-count: infinite, infinite;
     }
     @keyframes fall{
-      0%   { transform: translateY(-60px) translateX(0) rotate(0deg); }
-      100% { transform: translateY(110vh) translateX(40px) rotate(360deg); }
+      0%   { transform: translateY(-70px) rotate(0deg); }
+      100% { transform: translateY(112vh) rotate(360deg); }
     }
-    /* 本文は花びらより前面に */
-    header, main, footer { position: relative; z-index: 2; }
+    @keyframes sway{
+      0%,100% { margin-left: 0; }
+      50%     { margin-left: 28px; }
+    }
+
+    /* 画面が小さい場合は花びら少し減らす（軽量化） */
+    @media (max-width: 520px){
+      .petal.minhide{ display:none; }
+    }
   </style>
 </head>
 
 <body>
-  <!-- =========================
-       追加：花びら（左右のみ）
-       ※数を増減して密度調整できます
-       ========================= -->
-  <div class="petal" style="left:4%;  animation-duration:18s; animation-delay:-2s;">🌸</div>
-  <div class="petal" style="left:10%; animation-duration:22s; animation-delay:-10s; font-size:20px;">🌸</div>
-  <div class="petal" style="left:16%; animation-duration:20s; animation-delay:-6s; font-size:24px;">🌸</div>
+  <!-- 花びら：左側（多め） -->
+  <div class="petal" style="left:3%;  font-size:18px; animation-duration:18s, 5s;  animation-delay:-2s,  -1s;">🌸</div>
+  <div class="petal" style="left:6%;  font-size:22px; animation-duration:22s, 6s;  animation-delay:-12s, -3s;">🌸</div>
+  <div class="petal" style="left:9%;  font-size:26px; animation-duration:20s, 7s;  animation-delay:-6s,  -2s;">🌸</div>
+  <div class="petal" style="left:12%; font-size:20px; animation-duration:24s, 6s;  animation-delay:-15s, -4s;">🌸</div>
+  <div class="petal" style="left:15%; font-size:24px; animation-duration:19s, 5s;  animation-delay:-9s,  -1s;">🌸</div>
+  <div class="petal minhide" style="left:18%; font-size:18px; animation-duration:26s, 8s;  animation-delay:-20s, -5s; opacity:.18;">🌸</div>
+  <div class="petal minhide" style="left:20%; font-size:22px; animation-duration:23s, 7s;  animation-delay:-11s, -2s; opacity:.18;">🌸</div>
 
-  <div class="petal" style="left:84%; animation-duration:19s; animation-delay:-4s;">🌸</div>
-  <div class="petal" style="left:90%; animation-duration:24s; animation-delay:-12s; font-size:20px;">🌸</div>
-  <div class="petal" style="left:96%; animation-duration:21s; animation-delay:-8s; font-size:24px;">🌸</div>
+  <!-- 花びら：右側（多め） -->
+  <div class="petal" style="left:80%; font-size:18px; animation-duration:19s, 6s;  animation-delay:-4s,  -2s;">🌸</div>
+  <div class="petal" style="left:83%; font-size:22px; animation-duration:25s, 7s;  animation-delay:-14s, -3s;">🌸</div>
+  <div class="petal" style="left:86%; font-size:26px; animation-duration:21s, 5s;  animation-delay:-8s,  -1s;">🌸</div>
+  <div class="petal" style="left:89%; font-size:20px; animation-duration:27s, 8s;  animation-delay:-22s, -6s;">🌸</div>
+  <div class="petal" style="left:92%; font-size:24px; animation-duration:20s, 6s;  animation-delay:-10s, -2s;">🌸</div>
+  <div class="petal minhide" style="left:95%; font-size:18px; animation-duration:24s, 7s;  animation-delay:-18s, -5s; opacity:.18;">🌸</div>
+  <div class="petal minhide" style="left:97%; font-size:22px; animation-duration:26s, 6s;  animation-delay:-16s, -3s; opacity:.18;">🌸</div>
 
 <header>
   <div class="wrap">
